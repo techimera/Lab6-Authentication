@@ -1,13 +1,3 @@
-// var express = require('express');
-// var router = express.Router();
-
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
-// module.exports = router;
-
 var express = require('express');
 var router = express.Router();
 var expressSession = require('express-session');
@@ -21,8 +11,13 @@ router.get('/', function(req, res){
     if (req.session.user) {
       console.log("/ Route if user");
       res.render('index', {username: req.session.username,
-                           msg:req.session.msg,
-                           color:req.session.color});
+                          msg:req.session.msg,//});
+                          // color:req.session.color,
+                          gen:req.session.gender,
+                          ag:req.session.age,
+                          adr:req.session.address,
+                          em:req.session.email
+      });
     } else {
       console.log("/ Route else user");
       req.session.msg = 'Access denied!';

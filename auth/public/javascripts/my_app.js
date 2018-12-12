@@ -5,6 +5,7 @@ angular.module('myApp', []).
         .success(function(data, status, headers, config) {
       $scope.user = data;
       $scope.error = "";
+      console.log("Data is...", data);
     }).
     error(function(data, status, headers, config) {
       $scope.user = {};

@@ -40,7 +40,11 @@ exports.login = function(req, res){
         req.session.user = user.id;
         req.session.username = user.username;
         req.session.msg = 'Authenticated as ' + user.username;
-        req.session.color = user.color;
+        // req.session.color = user.color;
+        req.session.gender = user.gender;
+        req.session.age = user.age;
+        req.session.address = user.address;
+        req.session.email = user.email;
         res.redirect('/');
       });
     }else{
@@ -68,13 +72,20 @@ exports.updateUser = function(req, res){
   User.findOne({ _id: req.session.user })
   .exec(function(err, user) {
     user.set('email', req.body.email);
-    user.set('color', req.body.color);
+    // user.set('color', req.body.color);
+    user.set('gender', req.body.gender);
+    user.set('age', req.body.age);
+    user.set('address', req.body.address);
     user.save(function(err) {
       if (err){
         res.sessor.error = err;
       } else {
         req.session.msg = 'User Updated.';
-        req.session.color = req.body.color;
+        // req.session.color = req.body.color;
+        req.session.gender = req.body.gender;
+        req.session.age =  req.body.age;
+        req.session.email = req.body.email;
+        req.session.address = req.body.address;
       }
       res.redirect('/user');
     });
